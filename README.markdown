@@ -21,6 +21,7 @@ Install
 Simply run:
 
 > script/plugin install git://github.com/SagMor/wiki-engine.git
+> 
 > rake wiki:repository:create
 
 And you should be ready to roll

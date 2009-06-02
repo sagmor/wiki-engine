@@ -8,3 +8,5 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 require 'tasks/rails'
+
+Dir["tasks/*.rake"].each { |file| load file }

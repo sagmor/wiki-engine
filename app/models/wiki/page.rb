@@ -10,11 +10,11 @@ module Wiki
       @lang = lang
       @url = sanitize_url(url)
       
-      @title = (@url.split('/')[-1] || 'index').gsub('_',' ')
+      @title = (@url.split('/')[-1] || 'index').gsub('_',' ').titleize
     end
     
     def content
-      @content || (blob && blob.data)
+      @content || (blob && blob.data) || ''
     end
     
     def new_page?

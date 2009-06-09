@@ -15,7 +15,7 @@ class WikiController < ApplicationController
     @page.content = params[:wiki][:content]
 
     if @page.save
-      flash[:notice] = 'La Página se ha salvado!'
+      flash[:notice] = 'The page has been saved!'
       redirect_to(wiki_page_path(@page.lang, @page.url))
     end
   end
@@ -31,5 +31,4 @@ class WikiController < ApplicationController
     def load_page
       @page = Wiki::Page.new(params[:lang], params[:page])
     end
-
 end

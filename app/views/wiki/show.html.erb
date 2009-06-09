@@ -1,5 +1,9 @@
 <div id="wiki-content">
-  <%= BlueCloth.new(@page.content).to_html %>  
-  
-  <span class="wiki-edit-link"><%= link_to 'Edit', wiki_edit_path(@page.lang, @page.url) %></span>
+  <%- if @page.new_page? -%>
+    <%= render :partial => 'new_page' %>
+  <%- else -%>
+    <%= BlueCloth.new(@page.content).to_html %>  
+    
+    <span class="wiki-edit-link"><%= link_to 'Edit', wiki_edit_path(@page.lang, @page.url) %></span>
+  <%- end -%>
 </div>

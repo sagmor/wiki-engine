@@ -1,7 +1,17 @@
 <%- form_tag( wiki_page_path(@page.lang, @page.url), :id => 'wiki-edit-form') do -%>
   <dl>
     <dt><%= label_tag :'wiki[content]', 'Content:' %></dt>
-    <dd><%= text_area_tag :'wiki[content]', @page.content, :size => '100x30' %></dd>
+    <dd><%= text_area_tag :'wiki[content]', @page.content %></dd>
+
+    <dt><%= label_tag :'wiki[change_reason]', 'Change Reason:' %></dt>
+    <dd><%= text_field_tag :'wiki[change_reason]' %></dd>
+
+    <dt><%= label_tag :'wiki[author][name]', 'Author Name:' %></dt>
+    <dd><%= text_field_tag :'wiki[author][name]' %></dd>
+
+    <dt><%= label_tag :'wiki[author][email]', 'Author Email:' %></dt>
+    <dd><%= text_field_tag :'wiki[author][email]' %></dd>
+
     
     <dd>
       <%= submit_tag 'Save' %>

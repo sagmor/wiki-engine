@@ -13,7 +13,7 @@ class WikiController < ApplicationController
   end
   
   def update
-    @page.content = params[:wiki][:content]
+    @page.update(params[:wiki])
     @page.author = current_wiki_author if self.class.method_defined?( :current_wiki_author )
 
     if @page.save

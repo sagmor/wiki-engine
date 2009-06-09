@@ -79,3 +79,12 @@ a {
   font-size: 12px;
   list-style: disc;
 }
+
+#wiki-edit-form input[type="text"] {
+  width: 80%;
+}
+
+#wiki-edit-form textarea {
+  width: 80%;
+  height: 300px;
+}

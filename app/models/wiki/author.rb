@@ -3,9 +3,9 @@ module Wiki
     attr_accessor :name
     attr_accessor :email
     
-    def initialize(name, email)
-      @name = name
-      @email = email
+    def initialize(atributes)
+      @name = atributes[:name]
+      @email = atributes[:email]
     end
   end
 end

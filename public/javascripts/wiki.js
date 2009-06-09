@@ -10,6 +10,7 @@ $(document).ready(function() {
       
       $('#wiki-preview-close').click(function() {
         $('#wiki-preview').remove();
+        return false;
       });
     });
     

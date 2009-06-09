@@ -20,14 +20,14 @@ Install
 
 Simply run:
 
-  script/plugin install git://github.com/sagmor/wiki-engine.git 
-  rake wiki:install
+    script/plugin install git://github.com/sagmor/wiki-engine.git 
+    rake wiki:install
 
 And you should be ready to roll
 
 Simply access
 
-  http://localhost:3000/wiki/en/
+    http://localhost:3000/wiki/en/
 
 And see the welcome page!
 

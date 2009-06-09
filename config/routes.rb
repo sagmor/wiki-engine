@@ -6,6 +6,8 @@ ActionController::Routing::Routes.draw do |map|
     
     wiki.edit      ':lang/*page/edit',              :action => 'edit',
                                                     :conditions => { :method => :get }
+    wiki.preview   ':lang/*page/preview',           :action => 'preview',
+                                                    :conditions => { :method => :post }
     wiki.connect   ':lang/',                        :action => 'show',
                                                     :conditions => { :method => :get },
                                                     :page => ['index']

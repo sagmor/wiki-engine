@@ -1,8 +1,12 @@
-<%- form_tag( wiki_page_path(@page.lang, @page.url)) do -%>
+<%- form_tag( wiki_page_path(@page.lang, @page.url), :id => 'wiki-edit-form') do -%>
   <dl>
     <dt><%= label_tag :'wiki[content]', 'Content:' %></dt>
     <dd><%= text_area_tag :'wiki[content]', @page.content, :size => '100x30' %></dd>
     
-    <dd><%= submit_tag 'Save' %> or <%= link_to 'Cancel', wiki_page_path(@page.lang, @page.url) %></dd>
+    <dd>
+      <%= submit_tag 'Save' %>
+      <input type="button" id="wiki-preview-button" value="Preview" disabled="disabled" />
+      <%#= button_to 'Preview', wiki_preview_path(@page.lang, @page.url, :disabled => true) %> 
+      or <%= link_to 'Cancel', wiki_page_path(@page.lang, @page.url) %></dd>
   </dl>
 <%- end -%>

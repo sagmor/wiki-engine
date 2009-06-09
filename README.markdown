@@ -10,7 +10,7 @@ Requirements
 
 To use Wiki Engine you need the following:
 
-* Rails <= 2.3
+* Rails >= 2.3.2
 * Grit
 * BlueCloth
 
@@ -20,15 +20,14 @@ Install
 
 Simply run:
 
-> script/plugin install git://github.com/SagMor/wiki-engine.git
-> 
-> rake wiki:repository:create
+  script/plugin install git://github.com/sagmor/wiki-engine.git 
+  rake wiki:install
 
 And you should be ready to roll
 
 Simply access
 
-> http://localhost:3000/wiki/en/
+  http://localhost:3000/wiki/en/
 
 And see the welcome page!
 

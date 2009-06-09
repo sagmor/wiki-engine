@@ -1,9 +1,14 @@
 namespace :wiki do
+  
+  desc 'Installs all the necesary files'
+  task :install => ['wiki:repository:create'] do
+  end
+  
   namespace :repository do
 
     desc 'Creates and initializes an empty git repository to hold the page data'
     task :create => [:environment] do
-      raise "Repository already exists in #{Wiki.PATH}" if File.exists? Wiki::PATH
+      raise "Repository already exists in #{Wiki::PATH}" if File.exists? Wiki::PATH
 
       puts "Creating directory"
       FileUtils.mkdir_p Wiki::PATH

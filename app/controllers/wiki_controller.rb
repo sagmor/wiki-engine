@@ -34,6 +34,10 @@ class WikiController < ApplicationController
     @blame = @page.blame
   end
   
+  def versions
+    @versions = @page.versions
+  end
+  
   def invalid_version
     respond_to do |format|
       format.html { render :action => 'invalid_version' }

@@ -46,6 +46,10 @@ module Wiki
       Grit::Blob.blame(Wiki.repo, version || Wiki::MASTER, path)
     end
     
+    def versions
+      Wiki.repo.log(version || Wiki::MASTER, path)
+    end
+    
     private
       def commit
         if version.nil?

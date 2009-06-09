@@ -7,5 +7,9 @@ module Wiki
       @name = atributes[:name]
       @email = atributes[:email]
     end
+    
+    def actor
+      Grit::Actor.new(name, email)
+    end
   end
 end

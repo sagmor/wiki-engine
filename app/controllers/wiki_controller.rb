@@ -3,6 +3,8 @@ class WikiController < ApplicationController
   before_filter :load_page
   before_filter :authorize_edit, :only => [:edit, :update]
   
+  rescue_from Wiki::InvalidPageVersionError, :with => :invalid_version
+  
   def show
     respond_to do |format|
       format.html
@@ -28,13 +30,23 @@ class WikiController < ApplicationController
     render :layout => false
   end
   
+  def blame
+    @blame = @page.blame
+  end
+  
+  def invalid_version
+    respond_to do |format|
+      format.html { render :action => 'invalid_version' }
+    end
+  end
+  
   private
     def extract_format
       params[:page][-1], params[:format] = params[:page][-1].split('.')
     end
     
     def load_page
-      @page = Wiki::Page.new(params[:lang], params[:page])
+      @page = Wiki::Page.new(params[:lang], params[:page], params[:version])
     end
     
     def authorize_edit

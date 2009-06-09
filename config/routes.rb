@@ -8,6 +8,8 @@ ActionController::Routing::Routes.draw do |map|
                                                     :conditions => { :method => :get }
     wiki.preview   ':lang/*page/preview',           :action => 'preview',
                                                     :conditions => { :method => :post }
+    wiki.blame     ':lang/*page/blame',             :action => 'blame',
+                                                    :conditions => { :method => :get }
     wiki.connect   ':lang/',                        :action => 'show',
                                                     :conditions => { :method => :get },
                                                     :page => ['index']

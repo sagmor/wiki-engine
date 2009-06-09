@@ -1,0 +1,8 @@
+<table border="0">
+  <tr><th>line</th><th>author</th></tr>
+  <%- @blame.each do |commit| -%>
+  <%- commit[1].each do |line| -%>
+  <tr><td><%=h Grit::Actor.from_string(commit[0].author_string) %></td><td><%=h line %></td></tr>
+  <%- end -%>
+  <%- end -%>
+</table>

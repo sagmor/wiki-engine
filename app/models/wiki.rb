@@ -10,4 +10,10 @@ module Wiki
   def self.master
     self.repo.commit(MASTER)
   end
+  
+  class Error < RuntimeError
+  end
+  
+  class InvalidPageVersionError < Error
+  end
 end

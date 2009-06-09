@@ -1,15 +1,12 @@
 module Wiki
   class Page
-    attr_reader :title
-    attr_reader :url
-    attr_reader :lang
-    attr_writer :content
-    attr_accessor :author
-    attr_accessor :change_reason
+    attr_reader :title, :url, :lang
+    attr_accessor :content, :author, :change_reason, :version
     
-    def initialize(lang, url)
+    def initialize(lang, url, version = nil)
       @lang = lang
       @url = sanitize_url(url)
+      @version = version
       
       @title = (@url.split('/')[-1] || 'index').gsub('_',' ').titleize
     end
@@ -28,12 +25,12 @@ module Wiki
         index.add(path, @content)
         message = { 'Update' => {
           'title' => title,
-          'lang' => @lang,
-          'page' => @url,
+          'lang' => lang,
+          'page' => url,
           'reason' => @change_reason
         }}.to_yaml
         
-        index.commit(message, [Wiki.master], actor)
+        index.commit(message, [Wiki.master], (author.nil? ? nil : author.actor))
       end
       
       true
@@ -45,9 +42,24 @@ module Wiki
       @author = Wiki::Author.new(attributes[:author]) if attributes[:author]
     end
     
+    def blame
+      Grit::Blob.blame(Wiki.repo, version || Wiki::MASTER, path)
+    end
+    
     private
+      def commit
+        if version.nil?
+          Wiki.master
+        else
+          commit = Wiki.repo.commit(version)
+          raise Wiki::InvalidPageVersionError if commit.nil?
+          
+          commit
+        end
+      end
+    
       def blob
-        Wiki.master.tree / path rescue nil
+        commit.tree / path unless commit.nil?
       end
     
       def path

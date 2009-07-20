@@ -21,7 +21,10 @@ module Wiki
     
     def save
       unless @content.nil?
+        last_commit = Wiki.repo.log.first rescue nil
+        last_tree = last_commit.tree.id rescue nil
         index = Wiki.repo.index
+        index.read_tree(last_tree) if last_tree
         index.add(path, @content)
         message = { 'Update' => {
           'title' => title,
@@ -30,7 +33,7 @@ module Wiki
           'reason' => @change_reason
         }}.to_yaml
         
-        index.commit(message, [Wiki.master], (author.nil? ? nil : author.actor))
+        index.commit(message, (last_commit ? [last_commit.id] : nil), (author.nil? ? nil : author.actor))
       end
       
       true
